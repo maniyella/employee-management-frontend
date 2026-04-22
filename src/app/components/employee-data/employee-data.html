@@ -1,0 +1,23 @@
+<div class="container">
+    <table border="1" cellspacing="90" cellpadding="8" class="table-bg">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Position</th>
+          <th>Salary</th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <tr *ngFor="let emp of empList; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.position }}</td>
+          <td>{{ emp.salary }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

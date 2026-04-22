@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegisterServ } from '../../services/register-serv';
 
@@ -8,7 +8,7 @@ import { RegisterServ } from '../../services/register-serv';
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
-export class Register {
+export class Register implements OnInit {
   registerForm: FormGroup
   
   constructor(private fb: FormBuilder, private regServ: RegisterServ) {
@@ -20,13 +20,16 @@ export class Register {
     })
   }
   
-  registerEmp(data: any) {
-    console.log(data)
-    this.regServ.createEmp(data).subscribe((res)=> {
-      console.log(res)
+  ngOnInit() {
+     this.regServ.getAllEmployees().subscribe((res)=> {
     })
-    // this.regServ.getAllEmployees().subscribe((res)=> {
-    //   console.log(res)
-    // })
+  }
+  
+  registerEmp(data: any) {
+    this.regServ.createEmp(data).subscribe((res)=> {
+      if (res) {
+        alert("Employee Registered Successfully");
+      }
+    })
   }
 }
