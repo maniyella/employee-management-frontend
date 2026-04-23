@@ -11,7 +11,7 @@ export class RegisterServ {
   apiurl = environment.apiUrl;
 
   createEmp(data:Observable<any>) {
-    return this.http.post(`${this.apiurl}/addemployee`, data);
+    return this.http.post(`${this.apiurl}/employees`, data);
   }
 
   getAllEmployees() {
