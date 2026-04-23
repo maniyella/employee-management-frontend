@@ -15,7 +15,7 @@ export class RegisterServ {
   }
 
   getAllEmployees() {
-    return this.http.get(`${this.apiurl}/getemployees`);
+    return this.http.get(`${this.apiurl}/employees`);
   }
 
 }
