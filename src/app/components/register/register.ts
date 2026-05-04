@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegisterServ } from '../../services/register-serv';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,10 +9,10 @@ import { RegisterServ } from '../../services/register-serv';
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
-export class Register implements OnInit {
+export class Register {
   registerForm: FormGroup
   
-  constructor(private fb: FormBuilder, private regServ: RegisterServ) {
+  constructor(private fb: FormBuilder, private regServ: RegisterServ, private router: Router) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
@@ -20,15 +21,11 @@ export class Register implements OnInit {
     })
   }
   
-  ngOnInit() {
-     this.regServ.getAllEmployees().subscribe((res)=> {
-    })
-  }
-  
   registerEmp(data: any) {
     this.regServ.createEmp(data).subscribe((res)=> {
       if (res) {
         alert("Employee Registered Successfully");
+        this.router.navigate(['/employees']);
       }
     })
   }
