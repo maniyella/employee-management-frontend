@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RegisterServ } from '../../services/register-serv';
 import { Router } from '@angular/router';
+import { RegisterServ } from '../../../services/register-serv';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
@@ -15,17 +16,22 @@ export class Register {
   constructor(private fb: FormBuilder, private regServ: RegisterServ, private router: Router) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
-      mobile: ['', Validators.required],
-      salary: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      mobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      salary: ['', [Validators.required, Validators.min(1)]],
     })
   }
   
   registerEmp(data: any) {
     this.regServ.createEmp(data).subscribe((res)=> {
       if (res) {
-        alert("Employee Registered Successfully");
-        this.router.navigate(['/employees']);
+        this.regServ.getAllEmployees().subscribe((res)=> {
+          if (res) {
+            sessionStorage.setItem('empList', JSON.stringify(res));
+            alert("Employee Registered Successfully");
+            this.router.navigate(['/employees']);
+          }
+        })
       }
     })
   }

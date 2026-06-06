@@ -1,11 +1,9 @@
 import { Routes } from '@angular/router';
-import { Login } from './components/login/login';
-import { Register } from './components/register/register';
-import { EmployeeData } from './components/employee-data/employee-data';
 
 export const routes: Routes = [
-    {path:'register', component: Register },
-    {path: 'login', component: Login},
-    {path: 'employees', component: EmployeeData},
-    {path:'', redirectTo:'appComponent', pathMatch: 'full'},
+    {path:'register', loadComponent:()=>import('./components/employees/register/register').then(m=>m.Register)},
+    {path: 'employees', loadComponent: ()=> import('./components/employees/employee-comp/employee-comp').then(m=>m.EmployeeComp)},
+    {path: 'update', loadComponent:()=>import('./components/employees/update-emp/update-emp').then(m=>m.UpdateEmp)},
+    {path: 'login', loadComponent:()=>import('./components/employees/login/login').then(m=>m.Login)},
+    {path:'', redirectTo:'login', pathMatch: 'full'},
 ];

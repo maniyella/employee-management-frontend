@@ -1,0 +1,54 @@
+<div class="container">
+  <table border="2" cellspacing="90" cellpadding="8" class="rounded-table" *ngIf="empList.length != 0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Salary</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+  
+    <tbody *ngIf="empList.length > 0">
+      <tr *ngFor="let emp of empList; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.mobile }}</td>
+        <td>{{ emp.salary }}</td>
+        <td (click)="updateEmployee(emp)"><i class='fas fa-pen'></i></td>
+        <td data-bs-toggle="modal" data-bs-target="#exampleModal" #closeBtn (click)="(deleteId=emp._id)"><i class='fas fa-trash'></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container text-center mt-5">
+  <button class="btn empbtn w-30" (click)="addEmployee()">Add employee</button>&nbsp; &nbsp;
+  <button class="btn empbtn w-30" (click)="download()">Download Employee Data</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="close-icon text-end">
+          <i class="fa-solid fa-xmark"  data-bs-dismiss="modal" aria-label="Close" (click)="close($event)"></i>
+        </div>
+        <div class="delete-icon mb-3">
+          <i class="fa-regular fa-trash-can"></i>
+        </div>
+        <p class="modal-title text-center delete_text" id="exampleModalLabel">Delete</p>
+        <h6 class="text-center confirm_msg">Are you sure want to delete ?</h6>
+        <div class="text-center btnsgap">
+          <button type="button" class="btn cancelbtn" data-bs-dismiss="modal" (click)="close($event)">Cancel</button>
+          <button type="button" class="btn deletebtn" (click)="deleteEmp()">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>

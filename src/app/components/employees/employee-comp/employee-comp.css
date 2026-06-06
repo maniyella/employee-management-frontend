@@ -1,0 +1,111 @@
+.container {
+    justify-content: center;
+    display:flex;
+}
+
+.rounded-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Controls the corner roundness */
+    overflow: hidden; /* Clips the table content to the rounded corners */
+    font-family: sans-serif;
+}
+
+    /* Headers */
+.rounded-table th {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+}
+
+    /* Table Data */
+.rounded-table td {
+    padding: 12px 16px;
+    border-top: 1px solid #ddd;
+}
+
+
+tr:hover {
+    background-color: #f2f2f2;
+    color: #000;
+}
+    /* Alternating Row Colors */
+.rounded-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Corner Radiuses (Fixes background bleeding in certain browsers) */
+.rounded-table tr:first-child th:first-child { border-top-left-radius: 12px; }
+.rounded-table tr:first-child th:last-child { border-top-right-radius: 12px; }
+.rounded-table tr:last-child td:first-child { border-bottom-left-radius: 12px; }
+.rounded-table tr:last-child td:last-child { border-bottom-right-radius: 12px; }
+
+.empbtn {
+    background-color: #007bff;
+    color: white;
+}
+
+.btnsgap {
+  display:flex;
+  justify-content:center;
+  gap:15px;
+}
+
+.cancelbtn {
+    background-color:#f1f1f1;
+    color:#000
+}
+
+.deletebtn {
+    background-color:#D14B59;
+    color:white
+}
+
+.delete-icon {
+  color: #CE4B58;
+  cursor:pointer;
+  font-size:25px;
+  width:45px;
+  height:45px;
+  border:none;
+  border-radius:12px;
+  background:#FAF4F2;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:auto;
+}
+
+.fa-trash-can {
+    align-items:center
+}
+
+.confirm_msg {
+    color: #6C6C6C;
+    margin-bottom:35px;
+}
+
+.delete_text {
+    color: #111111;
+    font-size: 18px;
+}
+
+.close-icon {
+  width:18px;
+  height:18px;
+  background:#6F7070;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  margin-left: auto
+}
+
+.close-icon i {
+  color:white;
+  font-size:10px;
+}
